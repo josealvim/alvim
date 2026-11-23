@@ -9,9 +9,11 @@ tree, project search, tree-sitter highlighting, live diffs, multi-caret, and
 macros.
 
 **Status:** design + scaffold. The implementation is planned as vertical,
-testable slices tracked in GitHub milestones and issues. See the pinned
-[roadmap tracker](https://github.com/josealvim/alvim/issues/27) and
-[`docs/roadmap.md`](docs/roadmap.md).
+testable slices tracked in GitHub milestones and issues.
+
+- Project board: [alvim roadmap](https://github.com/users/josealvim/projects/1)
+- Pinned tracker: [#27 — Roadmap tracker](https://github.com/josealvim/alvim/issues/27)
+- Slice map: [`docs/roadmap.md`](docs/roadmap.md)
 
 ## Design
 

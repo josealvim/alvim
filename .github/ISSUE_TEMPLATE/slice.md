@@ -23,7 +23,7 @@ labels: slice
 
 ## Dependencies
 
-<!-- Slice IDs or "none". -->
+<!-- Slice IDs and native GitHub blocked-by links, or "none". -->
 
 ## Notes
 

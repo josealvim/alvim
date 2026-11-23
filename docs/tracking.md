@@ -5,10 +5,14 @@ the code.
 
 ## Structure
 
+- **Project board** = [alvim roadmap](https://github.com/users/josealvim/projects/1),
+  grouped by Status and sliced by Milestone.
 - **Milestone** = phase (`Phase 1 — Walking skeleton`, ...).
 - **Issue** = one vertical slice, prefixed `S01 — ...`, labeled `slice` plus area
   labels.
 - **Task list** = the slice's subtasks, as checkboxes inside the issue.
+- **Native dependencies** = GitHub `blocked-by` links mirror the graph; an issue
+  with open blockers is not ready to start.
 - **`docs/design.md`** = the decisions the slice must respect.
 - **`docs/roadmap.md`** = the dependency-ordered map and issue links.
 
@@ -73,14 +77,16 @@ When a decision changes:
 3. Update `docs/roadmap.md` (including the Mermaid graph) if ordering changes.
 4. Note the change in the issue or PR that caused it.
 
-## Project board (optional)
+## Project board
 
-If the GitHub CLI has the `project` scope, a board named **alvim roadmap** mirrors
-these issues. Without the scope, milestones plus the roadmap table are the source
-of truth. To enable the board:
+The personal Project v2 [alvim roadmap](https://github.com/users/josealvim/projects/1)
+is the day-to-day view:
 
-```sh
-gh auth refresh -s project
-```
+- **Board / Slices:** column field Status, sliced by Milestone.
+- **Table / All slices:** Title, Status, Milestone, Labels.
+- **Auto-add workflow:** repository `alvim`, filter `is:issue label:slice`, so new
+  slices appear automatically.
 
-Then add the repo issues to a Project v2 with `Status` and `Phase` fields.
+Milestones, issues, native dependencies, and `docs/roadmap.md` remain the source
+of truth; the board is a view over them. Moving a card to Done does not close the
+issue — close the issue when the slice is actually done.

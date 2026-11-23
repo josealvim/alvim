@@ -121,9 +121,11 @@ worker pool            parse workers          git worker           inotify threa
 - Motions move all carets. Edit/operator commands apply per caret in document
   order, ranges merge on overlap, and the whole application is one undo group.
 - Visual char/line/block modes are built on the same selection primitive.
-- Default keys for adding carets are decided during implementation; commands are
-  exposed first. The recommended defaults are leader-based to avoid clobbering
-  vim keys.
+- Default keys are leader-based so vim bindings stay intact: `<Space>n` /
+  `<Space>N` add the next/previous occurrence of the word or selection,
+  `Ctrl-Alt-Up/Down` stack carets, and `Esc` collapses to the primary caret.
+  Alt-click (added by the mouse slice) also adds a caret. `Ctrl-D` remains
+  vim's scroll-half-page. All bindings are compile-time remappable.
 
 ## 4. Input, commands, and editing
 
@@ -150,7 +152,7 @@ worker pool            parse workers          git worker           inotify threa
 ### Registers and clipboard
 
 - Unnamed register plus numbered delete/yank history.
-- One macro slot in v1 (`q` start/stop, `@` replay, counts, cancellation).
+- Lettered macro registers a-z; named yank registers remain deferred.
 - System clipboard via OSC 52 with `xclip`/`wl-copy` fallback; bracketed paste.
 
 ### Macros
@@ -158,7 +160,10 @@ worker pool            parse workers          git worker           inotify threa
 - Record decoded key events (code + modifiers + text) at the input-model
   boundary; replay feeds the same input model so grammar state and text entry
   behave exactly as typed.
+- `q{letter}` starts/stops recording into macro register a-z; `@{letter}`
+  replays, `@@` repeats the last macro, and counts are supported.
 - Replay is cancellable, has a recursion guard, and shows a status indicator.
+- Recording a macro never touches the yank registers.
 
 ### Indentation
 
@@ -292,7 +297,8 @@ worker pool            parse workers          git worker           inotify threa
 
 These are baked into the plan unless changed:
 
-- Registers: unnamed + numbered yank/delete history; one macro slot.
+- Registers: unnamed + numbered yank/delete history; lettered macro registers
+  a-z; named yank registers deferred.
 - Clipboard: OSC 52, then `xclip`/`wl-copy`, then internal only.
 - Search: POSIX ERE; incremental literal while typing, regex on commit; smartcase
   on.
@@ -324,6 +330,5 @@ These are baked into the plan unless changed:
 
 ## 16. Deferred questions
 
-- Default multi-caret keybindings (commands first; leader-based recommended).
-- Single macro slot vs. `q{letter}` named macro registers.
+- Named yank registers (macro registers are already lettered).
 - Whether to add right-click context menus after the full mouse UI lands.
