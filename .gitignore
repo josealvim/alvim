@@ -1,0 +1,18 @@
+# Build artifacts
+*.o
+*.out
+*.so
+.depi.mk
+generated/
+build/
+
+# Editor / Vim leftovers
+*.swp
+*.swo
+.*.swp
+.*.swo
+*~
+
+# Local state and scratch
+.session
+alvim-state/
